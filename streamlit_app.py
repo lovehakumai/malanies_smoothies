@@ -2,7 +2,12 @@
 import streamlit as st
 from snowflake.snowpark.functions import col
 import requests
-
+try:
+    smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+    st.success("API通信成功！")
+    st.json(smoothiefroot_response.json())
+except Exception as e:
+    st.error(f"APIエラー: {e}")
 # Write directly to the app
 st.title(f":cup_with_straw: Customize Your Smoothie!:cup_with_straw:")
 st.write(
